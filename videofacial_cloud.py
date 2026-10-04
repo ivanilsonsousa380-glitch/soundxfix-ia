@@ -1,24 +1,20 @@
-name: Rodar VideoFacil Automatico
+import os
+import sys
 
-on:
-  workflow_dispatch:
+print("=== INICIANDO O VIDEOFACIL CLOUD ===")
 
-jobs:
-  run-script:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Baixar codigo do repositorio
-        uses: actions/checkout@v4
+print(f"Diretório de trabalho atual: {os.getcwd()}")
+print(f"Versão do Python: {sys.version}")
 
-      - name: Configurar Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
+def main():
+    print("Executando rotina principal de geração...")
+    
+    output_dir = "output"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+        print(f"Pasta '{output_dir}' criada com sucesso.")
+        
+    print("Processo concluído com sucesso!")
 
-      - name: Instalar dependencias
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      - name: Executar script videofacil
-        run: python videofacil_cloud.py
+if __name__ == "__main__":
+    main()
