@@ -1,18 +1,20 @@
 import os
-import uvicorn
-from fastapi import FastAPI
+import sys
 
-app = FastAPI()
+print("=== INICIANDO O VIDEOFACIL CLOUD ===")
 
-@app.post("/analyze")
-def analyze():
-    return {
-        "status": "sucesso",
-        "diagnostico": "Sistema verificado com sucesso em ambiente cloud.",
-        "peca_nome": "Módulo FastAPI em Produção",
-        "link_afiliado": "https://exemplo.com/sucesso-cloud"
-    }
+print(f"Diretório de trabalho atual: {os.getcwd()}")
+print(f"Versão do Python: {sys.version}")
+
+def main():
+    print("Executando rotina principal de geração...")
+    
+    output_dir = "output"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+        print(f"Pasta '{output_dir}' criada com sucesso.")
+        
+    print("Processo concluído com sucesso!")
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    main()
