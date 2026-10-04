@@ -15,22 +15,10 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Diagnostico Completo de Arquivos
+      - name: Instalar dependencias
         run: |
-          echo "=== DIRETORIO ATUAL ==="
-          pwd
-          echo "=== LISTAGEM COMPLETA DE ARQUIVOS (TREE) ==="
-          find . -maxdepth 3 -not -path '*/.*'
-          echo "=== PROCURANDO PELO SCRIPT ==="
-          find . -name "videofacil_cloud.py"
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Executar script videofacil encontrado
-        run: |
-          ARQUIVO=$(find . -name "videofacil_cloud.py" | head -n 1)
-          if [ -f "$ARQUIVO" ]; then
-            echo "Executando: python $ARQUIVO"
-            python "$ARQUIVO"
-          else
-            echo "ERRO CRITICO: Arquivo videofacil_cloud.py nao foi encontrado em nenhuma pasta!"
-            exit 1
-          fi
+      - name: Executar script videofacil
+        run: python videofacil_cloud.py
