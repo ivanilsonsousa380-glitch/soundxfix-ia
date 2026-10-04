@@ -15,5 +15,8 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Listar arquivos para diagnostico
+        run: ls -la
+
       - name: Executar script videofacil
-        run: python videofacil_cloud.py.
+        run: python videofacil_cloud.py
