@@ -3,6 +3,10 @@ name: Rodar VideoFacil Automatico
 on:
   workflow_dispatch:
 
+# Garante permissões completas para o robô ler e escrever no repositório se precisar
+permissions:
+  contents: write
+
 jobs:
   run-script:
     runs-on: ubuntu-latest
@@ -15,10 +19,22 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Instalar dependencias
+      - name: Atualizar pip e ferramentas base
         run: |
-          python -m pip install --upgrade pip
+          python -m pip install --upgrade pip setuptools wheel
+
+      - name: Instalar dependencias do requirements.txt
+        run: |
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Executar script videofacil
+      - name: Diagnostico rapido do ambiente
+        run: |
+          echo "--- DIRETORIO ATUAL ---"
+          pwd
+          echo "--- LISTA DE FICHEIROS NA RAIZ ---"
+          ls -la
+          echo "--- VERSAO DO PYTHON ---"
+          python --version
+
+      - name: Executar script videofacil cloud
         run: python videofacil_cloud.py
