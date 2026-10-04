@@ -36,5 +36,6 @@ jobs:
           echo "--- VERSAO DO PYTHON ---"
           python --version
 
-      - name: Executar script videofacil cloud
-        run: python videofacil_cloud.py
+      - name: Executar script videofacil cloud de forma direta
+        run: |
+          python ./videofacil_cloud.py
