@@ -37,5 +37,8 @@ jobs:
           echo "--- VERSAO DO PYTHON ---"
           python --version
 
-      - name: Executar script videofacil cloud
-        run: python videofacil_cloud.py
+      - name: Localizar e executar script videofacil cloud
+        run: |
+          PYTHON_FILE=$(find . -name "videofacil_cloud.py" | head -n 1)
+          echo "Ficheiro encontrado em: $PYTHON_FILE"
+          python "$PYTHON_FILE"
