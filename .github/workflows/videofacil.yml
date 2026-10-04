@@ -37,5 +37,4 @@ jobs:
           python --version
 
       - name: Executar script videofacil cloud
-        working-directory: ./soundxfix-ia
         run: python videofacil_cloud.py
