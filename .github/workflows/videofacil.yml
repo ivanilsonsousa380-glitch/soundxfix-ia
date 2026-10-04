@@ -29,16 +29,7 @@ jobs:
         run: |
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Diagnostico rapido do ambiente
+      - name: Executar script videofacil cloud com caminho absoluto
+        working-directory: /home/runner/work/soundxfix-ia/soundxfix-ia
         run: |
-          echo "--- DIRETORIO ATUAL ---"
-          pwd
-          ls -la
-          echo "--- VERSAO DO PYTHON ---"
-          python --version
-
-      - name: Localizar e executar script videofacil cloud
-        run: |
-          PYTHON_FILE=$(find . -name "videofacil_cloud.py" | head -n 1)
-          echo "Ficheiro encontrado em: $PYTHON_FILE"
-          python "$PYTHON_FILE"
+          python videofacil_cloud.py
