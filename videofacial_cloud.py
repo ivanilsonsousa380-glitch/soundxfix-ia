@@ -17,3 +17,4 @@ jobs:
 
       - name: Executar script videofacil
         run: python videofacil_cloud.py
+        working-directory: .
