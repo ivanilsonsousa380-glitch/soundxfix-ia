@@ -1,4 +1,4 @@
+# Dependências do projeto
 requests
 pillow
-gTTS
 moviepy
