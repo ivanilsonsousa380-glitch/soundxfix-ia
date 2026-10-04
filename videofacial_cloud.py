@@ -1,17 +1,19 @@
-import os
-import time
+name: Rodar VideoFacil Automatico
 
-print("Iniciando o VideoFacil em ambiente cloud...")
+on:
+  workflow_dispatch:
 
-# Simulação do processo de automação de vídeo
-def executar_automacao():
-    print("Passo 1: Verificando diretórios e dependências...")
-    time.sleep(2)
-    
-    print("Passo 2: Processando os arquivos de vídeo...")
-    time.sleep(2)
-    
-    print("Passo 3: Concluído com sucesso! Vídeo gerado na nuvem.")
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar codigo do repositorio
+        uses: actions/checkout@v4
 
-if __name__ == "__main__":
-    executar_automacao()
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Executar script videofacil
+        run: python videofacil_cloud.py
