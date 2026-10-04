@@ -36,5 +36,10 @@ jobs:
           echo "--- VERSAO DO PYTHON ---"
           python --version
 
-      - name: Executar script videofacil cloud
-        run: python videofacil_cloud.py
+      - name: Diagnostico rapido e executar script
+        run: |
+          echo "--- DIRETORIO ATUAL ---"
+          pwd
+          ls -la
+          echo "--- EXECUTANDO SCRIPT ---"
+          python videofacil_cloud.py
