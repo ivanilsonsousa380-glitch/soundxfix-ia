@@ -15,8 +15,22 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Listar arquivos para diagnostico
-        run: ls -la
+      - name: Diagnostico Completo de Arquivos
+        run: |
+          echo "=== DIRETORIO ATUAL ==="
+          pwd
+          echo "=== LISTAGEM COMPLETA DE ARQUIVOS (TREE) ==="
+          find . -maxdepth 3 -not -path '*/.*'
+          echo "=== PROCURANDO PELO SCRIPT ==="
+          find . -name "videofacil_cloud.py"
 
-      - name: Executar script videofacil
-        run: python videofacil_cloud.py
+      - name: Executar script videofacil encontrado
+        run: |
+          ARQUIVO=$(find . -name "videofacil_cloud.py" | head -n 1)
+          if [ -f "$ARQUIVO" ]; then
+            echo "Executando: python $ARQUIVO"
+            python "$ARQUIVO"
+          else
+            echo "ERRO CRITICO: Arquivo videofacil_cloud.py nao foi encontrado em nenhuma pasta!"
+            exit 1
+          fi
