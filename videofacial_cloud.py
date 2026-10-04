@@ -16,5 +16,4 @@ jobs:
           python-version: '3.10'
 
       - name: Executar script videofacil
-        run: python videofacil_cloud.py
-        working-directory: .
+        run: python videofacil_cloud.py.
